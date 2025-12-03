@@ -29,6 +29,23 @@ void inicializarTablero(char tablero[TABLERO][TABLERO]) {
 			}
 		}
 	}
+	tablero[0][0] = TORRE_NEGR;
+	tablero[0][1] = CABALLO_NEGR;
+	tablero[0][2] = ALFIL_NEGR;
+	tablero[0][3] = REINA_NEGR;
+	tablero[0][4] = REY_NEGR;
+	tablero[0][5] = ALFIL_NEGR;
+	tablero[0][6] = CABALLO_NEGR;
+	tablero[0][7] = TORRE_NEGR;
+
+	tablero[7][0] = TORRE_BLAN;
+	tablero[7][1] = CABALLO_BLAN;
+	tablero[7][2] = ALFIL_BLAN;
+	tablero[7][3] = REINA_BLAN;
+	tablero[7][4] = REY_BLAN;
+	tablero[7][5] = ALFIL_BLAN;
+	tablero[7][6] = CABALLO_BLAN;
+	tablero[7][7] = TORRE_BLAN;
 }
 
 void mostrarTablero(char tablero[TABLERO][TABLERO]) {
