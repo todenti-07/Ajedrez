@@ -29,23 +29,24 @@ void inicializarTablero(char tablero[TABLERO][TABLERO]) {
 			}
 		}
 	}
-	tablero[0][0] = TORRE_NEGR;
-	tablero[0][1] = CABALLO_NEGR;
-	tablero[0][2] = ALFIL_NEGR;
-	tablero[0][3] = REINA_NEGR;
-	tablero[0][4] = REY_NEGR;
-	tablero[0][5] = ALFIL_NEGR;
-	tablero[0][6] = CABALLO_NEGR;
-	tablero[0][7] = TORRE_NEGR;
+	
+	for (int i = 0; i < 8; i++) {
 
-	tablero[7][0] = TORRE_BLAN;
-	tablero[7][1] = CABALLO_BLAN;
-	tablero[7][2] = ALFIL_BLAN;
-	tablero[7][3] = REINA_BLAN;
-	tablero[7][4] = REY_BLAN;
-	tablero[7][5] = ALFIL_BLAN;
-	tablero[7][6] = CABALLO_BLAN;
-	tablero[7][7] = TORRE_BLAN;
+		// Fila 0: piezas negras
+		if (i == 0 || i == 7) tablero[0][i] = TORRE_NEGR;        // 't'
+		else if (i == 1 || i == 6) tablero[0][i] = CABALLO_NEGR; // 'h'
+		else if (i == 2 || i == 5) tablero[0][i] = ALFIL_NEGR;   // 'b'
+		else if (i == 3) tablero[0][i] = REINA_NEGR;               // 'q'
+		else if (i == 4) tablero[0][i] = REY_NEGR;                 // 'k'
+
+		// Fila 7: piezas blancas
+		if (i == 0 || i == 7) tablero[7][i] = TORRE_BLAN;        // 'T'
+		else if (i == 1 || i == 6) tablero[7][i] = CABALLO_BLAN; // 'H'
+		else if (i == 2 || i == 5) tablero[7][i] = ALFIL_BLAN;   // 'B'
+		else if (i == 3) tablero[7][i] = REINA_BLAN;               // 'Q'
+		else if (i == 4) tablero[7][i] = REY_BLAN;                 // 'K'
+	}
+
 }
 
 void mostrarTablero(char tablero[TABLERO][TABLERO]) {
