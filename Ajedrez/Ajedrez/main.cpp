@@ -65,12 +65,21 @@ void mostrarTablero(char tablero[TABLERO][TABLERO]) {
 	}
 }
 
+void inicializarJuego(char tablero[TABLERO][TABLERO]) {
+	int respuesta; 
+	std::cout << "\nInicia el jugador de piezas blancas. Indica la posicion de partida"<<std::endl; 
+	std::cin >> respuesta; 
+
+}
+
 int main() {
 	char tablero[TABLERO][TABLERO] = {};
 
 	inicializarTablero(tablero);
 
 	mostrarTablero(tablero);
+
+	inicializarJuego(tablero); 
 
 	return 0;
 }
