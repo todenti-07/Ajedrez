@@ -18,5 +18,8 @@
 #define REINA_NEGR 'q'
 #define REY_NEGR 'k'
 
-void inicializarTablero(char tablero[TABLERO][TABLERO]);
-void mostrarTablero(char tablero[TABLERO][TABLERO]);
+struct Coordenadas
+{
+	int x;
+	int y;
+};
