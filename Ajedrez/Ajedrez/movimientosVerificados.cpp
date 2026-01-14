@@ -97,7 +97,50 @@ void verificarMovimientoTorreN(char tablero[TABLERO][TABLERO], Coordenadas posIn
 	std::cout << "Movimiento valido!\n";
 }
 
-//FALTA CABALLO
+//Caballos hechos con IA!!
+void verificarMovimientoCaballoB(char tablero[TABLERO][TABLERO], Coordenadas posInicial, Coordenadas posFinal) {
+
+	int dx = abs(posFinal.x - posInicial.x);
+	int dy = abs(posFinal.y - posInicial.y);
+
+	if ((dx == 2 && dy == 1) || (dx == 1 && dy == 2)) {
+
+		if (tablero[posFinal.x][posFinal.y] >= 'A' && tablero[posFinal.x][posFinal.y] <= 'Z') {
+			std::cout << "No puedes eliminar tus propias piezas.\n";
+		}
+		else {
+			std::cout << "Movimiento valido!\n";
+		}
+	}
+	else {
+		std::cout << "Movimiento invalido del caballo. Introduce nuevas coordenadas:\n";
+		std::cin >> posFinal.x;
+		std::cin >> posFinal.y;
+		verificarMovimientoCaballoB(tablero, posInicial, posFinal);
+	}
+}
+
+void verificarMovimientoCaballoN(char tablero[TABLERO][TABLERO], Coordenadas posInicial, Coordenadas posFinal) {
+
+	int dx = abs(posFinal.x - posInicial.x);
+	int dy = abs(posFinal.y - posInicial.y);
+
+	if ((dx == 2 && dy == 1) || (dx == 1 && dy == 2)) {
+
+		if (tablero[posFinal.x][posFinal.y] >= 'a' && tablero[posFinal.x][posFinal.y] <= 'z') {
+			std::cout << "No puedes eliminar tus propias piezas.\n";
+		}
+		else {
+			std::cout << "Movimiento valido!\n";
+		}
+	}
+	else {
+		std::cout << "Movimiento invalido del caballo. Introduce nuevas coordenadas:\n";
+		std::cin >> posFinal.x;
+		std::cin >> posFinal.y;
+		verificarMovimientoCaballoN(tablero, posInicial, posFinal);
+	}
+}
 
 void verificarMovimientoReinaB(char tablero[TABLERO][TABLERO], Coordenadas posInicial, Coordenadas posFinal) {
 
@@ -137,4 +180,48 @@ void verificarMovimientoReinaB(char tablero[TABLERO][TABLERO], Coordenadas posIn
 	}
 }
 
-//FALTA REY
+void verificarMovimientoReyB(char tablero[TABLERO][TABLERO], Coordenadas posInicial, Coordenadas posFinal) {
+
+	if ((posFinal.x == posInicial.x + 1 || posFinal.x == posInicial.x - 1 || posFinal.x == posInicial.x) &&
+		(posFinal.y == posInicial.y + 1 || posFinal.y == posInicial.y - 1 || posFinal.y == posInicial.y)) {
+
+		if (posFinal.x == posInicial.x && posFinal.y == posInicial.y) {
+			std::cout << "Movimiento invalido del rey.\n";
+		}
+		else if (tablero[posFinal.x][posFinal.y] >= 'A' && tablero[posFinal.x][posFinal.y] <= 'Z') {
+			std::cout << "No puedes eliminar tus propias piezas.\n";
+		}
+		else {
+			std::cout << "Movimiento valido!\n";
+		}
+	}
+	else {
+		std::cout << "Movimiento invalido del rey. Introduce nuevas coordenadas:\n";
+		std::cin >> posFinal.x;
+		std::cin >> posFinal.y;
+		verificarMovimientoReyB(tablero, posInicial, posFinal);
+	}
+}
+
+void verificarMovimientoReyN(char tablero[TABLERO][TABLERO], Coordenadas posInicial, Coordenadas posFinal) {
+
+	if ((posFinal.x == posInicial.x + 1 || posFinal.x == posInicial.x - 1 || posFinal.x == posInicial.x) &&
+		(posFinal.y == posInicial.y + 1 || posFinal.y == posInicial.y - 1 || posFinal.y == posInicial.y)) {
+
+		if (posFinal.x == posInicial.x && posFinal.y == posInicial.y) {
+			std::cout << "Movimiento invalido del rey.\n";
+		}
+		else if (tablero[posFinal.x][posFinal.y] >= 'a' && tablero[posFinal.x][posFinal.y] <= 'z') {
+			std::cout << "No puedes eliminar tus propias piezas.\n";
+		}
+		else {
+			std::cout << "Movimiento valido!\n";
+		}
+	}
+	else {
+		std::cout << "Movimiento invalido del rey. Introduce nuevas coordenadas:\n";
+		std::cin >> posFinal.x;
+		std::cin >> posFinal.y;
+		verificarMovimientoReyN(tablero, posInicial, posFinal);
+	}
+}

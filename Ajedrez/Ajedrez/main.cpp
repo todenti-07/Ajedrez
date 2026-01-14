@@ -1,5 +1,7 @@
 #include "const.h"
 #include "tableroRelacion.h"
+#include "movimientosVerificados.cpp"
+#include "jaqueMate.cpp"
 
 void comprobarMovimientoCualquiera(char tablero[TABLERO][TABLERO], Coordenadas posInicial, Coordenadas posFinal) {
 	// Ajuste de �ndices para el tablero.
@@ -43,6 +45,13 @@ void juegoJugable(char tablero[TABLERO][TABLERO]) {
 			comprobarMovimientoCualquiera(tablero, posInicial, posFinal);
 			tablero[posFinal.x][8 - posFinal.y * -1] = tablero[posInicial.x][posInicial.y];
 			tablero[posInicial.x][posInicial.y] = VACIO;
+
+			// Comprobar jaque mate del rey negro
+			if (jaqueMate(tablero, false)) {
+				std::cout << "JAQUE MATE! Ganan las blancas\n";
+				juegoAcabado = true;
+			}
+
 			esTurnoJ1 = false;
 		}
 		while (!esTurnoJ1) { //Jugador 2
@@ -54,6 +63,13 @@ void juegoJugable(char tablero[TABLERO][TABLERO]) {
 			comprobarMovimientoCualquiera(tablero, posInicial,posFinal);
 			tablero[posFinal.x][8 - posFinal.y * -1] = tablero[posInicial.x][posInicial.y];
 			tablero[posInicial.x][posInicial.y] = VACIO;
+
+			// Comprobar jaque mate del rey blanco
+			if (jaqueMate(tablero, true)) {
+				std::cout << "JAQUE MATE! Ganan las negras\n";
+				juegoAcabado = true;
+			}
+
 			esTurnoJ1 = true;
 		}
 	}

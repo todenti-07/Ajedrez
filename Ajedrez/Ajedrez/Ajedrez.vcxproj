@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movimientosVerificados.cpp" />
+    <ClCompile Include="jaqueMate.cpp" />
     <ClCompile Include="tableroRelacion.cpp" />
   </ItemGroup>
   <ItemGroup>
