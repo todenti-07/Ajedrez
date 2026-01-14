@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="juegoRelacion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movimientosVerificados.cpp" />
     <ClCompile Include="jaqueMate.cpp" />
@@ -130,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="const.h" />
+    <ClInclude Include="jaqueMate.h" />
+    <ClInclude Include="juegoRelacion.h" />
+    <ClInclude Include="movimientosVerificados.h" />
     <ClInclude Include="tableroRelacion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

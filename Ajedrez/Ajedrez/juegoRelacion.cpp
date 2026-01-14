@@ -1,60 +1,109 @@
-#include <iostream>
 #include "const.h"
+#include "tableroRelacion.h"
 #include "movimientosVerificados.h"
 
-void comprobarMovimientoCualquiera(char tablero[TABLERO][TABLERO], Coordenadas posInicial, Coordenadas posFinal, bool esTurnoJ1) {
-	// Ajuste de índices para el tablero.
-	while (posFinal.x <= 8 || posFinal.x > 0) {
-		std::cout << "Ese número no se encuentra en el tablero!";
-		std::cin >> posFinal.x;
-	}
-	while (posFinal.y <= 8 || posFinal.y > 0) {
-		std::cout << "Ese número no se encuentra en el tablero!";
-		std::cin >> posFinal.y;
-	}
-	// Se tiene que limitar al jugador para que no pueda mover piezas del oponente. 
-	while (tablero[posInicial.x][posInicial.y] < 'A' || tablero[posInicial.x][posInicial.y] > 'Z') {
-		std::cout << "No puedes mover las piezas del oponente! Elige otra pieza: (columna, fila)";
-		std::cin >> posInicial.x;
-		std::cin >> posInicial.y;
-	}
-	// Se tiene que limitar al jugador para que pueda mover las piezas a las posiciones posibles.
-	while (tablero[posFinal.x][8 - posFinal.y * -1] != VACIO) {
-		std::cout << "No puedes mover la pieza a esa posición! Elige otra posición: (columna, fila)";
-		std::cin >> posFinal.x;
-		std::cin >> posFinal.y;
-	}
-}
-
 void juegoJugable(char tablero[TABLERO][TABLERO]) {
-
 	Coordenadas posInicial, posFinal;
 	bool juegoAcabado = false;
 	bool esTurnoJ1 = true;
 
-	std::cout << "\nInicia el jugador de piezas blancas. Indica la posición de la pieza que quieras mover: (columna, fila)" << std::endl;
+	std::cout << "\nInicia el jugador de piezas blancas. Indica la posicion de la pieza que quieras mover: (columna, fila)" << std::endl;
 	while (!juegoAcabado) {
-		while (esTurnoJ1) { //Jugador 1
-			std::cin >> posInicial.x;
-			std::cin >> posInicial.y;
-			std::cout << "Indica la posición a la que quieres que se mueva la pieza: (columna, fila)";
-			std::cin >> posFinal.x;
-			std::cin >> posFinal.y;
-			comprobarMovimientoCualquiera(tablero, posInicial, posFinal, esTurnoJ1);
-			tablero[posFinal.x][8 - posFinal.y * -1] = tablero[posInicial.x][posInicial.y];
-			tablero[posInicial.x][posInicial.y] = VACIO;
-			esTurnoJ1 = false;
+		mostrarTablero(tablero);
+
+		if (esTurnoJ1) {
+			std::cout << "\nTurno BLANCAS. Indica (columna, fila) origen: ";
 		}
-		while (!esTurnoJ1) { //Jugador 2
-			std::cin >> posInicial.x;
-			std::cin >> posInicial.y;
-			std::cout << "Indica la posición a la que quieres que se mueva la pieza: (columna, fila)";
-			std::cin >> posFinal.x;
-			std::cin >> posFinal.y;
-			comprobarMovimientoCualquiera(tablero, posInicial, posFinal, esTurnoJ1);
-			tablero[posFinal.x][8 - posFinal.y * -1] = tablero[posInicial.x][posInicial.y];
-			tablero[posInicial.x][posInicial.y] = VACIO;
-			esTurnoJ1 = true;
+		else {
+			std::cout << "\nTurno NEGRAS. Indica (columna, fila) origen: ";
+		}
+
+		std::cin >> posInicial.x >> posInicial.y;
+		std::cout << "Indica (columna, fila) destino: ";
+		std::cin >> posFinal.x >> posFinal.y;
+
+		comprobarMovimientoCualquiera(tablero, posInicial, posFinal, esTurnoJ1);
+
+		int sx = posInicial.x - 1;
+		int sy = posInicial.y - 1;
+		int dx = posFinal.x - 1;
+		int dy = posFinal.y - 1;
+
+		char pieza = tablero[sy][sx];
+		bool valido = false;
+
+		switch (pieza) {
+		case 'P':
+			valido = movimientoPeonValido(tablero, sx, sy, dx, dy, true);
+			break;
+		case 'p':
+			valido = movimientoPeonValido(tablero, sx, sy, dx, dy, false);
+			break;
+		case 'T':
+			valido = movimientoTorreValido(tablero, sx, sy, dx, dy, true);
+			break;
+		case 't':
+			valido = movimientoTorreValido(tablero, sx, sy, dx, dy, false);
+			break;
+		case 'H':
+			valido = movimientoCaballoValido(tablero, sx, sy, dx, dy, true);
+			break;
+		case 'h':
+			valido = movimientoCaballoValido(tablero, sx, sy, dx, dy, false);
+			break;
+		case 'B':
+			valido = movimientoAlfilValido(tablero, sx, sy, dx, dy, true);
+			break;
+		case 'b':
+			valido = movimientoAlfilValido(tablero, sx, sy, dx, dy, false);
+			break;
+		case 'Q':
+			valido = movimientoReinaValido(tablero, sx, sy, dx, dy, true);
+			break;
+		case 'q':
+			valido = movimientoReinaValido(tablero, sx, sy, dx, dy, false);
+			break;
+		case 'K':
+			valido = movimientoReyValido(tablero, sx, sy, dx, dy, true);
+			break;
+		case 'k':
+			valido = movimientoReyValido(tablero, sx, sy, dx, dy, false);
+			break;
+		}
+
+		if (!valido) {
+			std::cout << "Movimiento NO valido.\n";
+			continue;
+		}
+
+		// Promocion del peon
+		if ((pieza == 'P' && dy == 0) || (pieza == 'p' && dy == 7)) {
+			pieza = (pieza == 'P') ? 'Q' : 'q';
+		}
+
+		tablero[dy][dx] = pieza;
+		tablero[sy][sx] = VACIO;
+
+		esTurnoJ1 = !esTurnoJ1;
+
+		// Comprobar rey capturado
+		bool reyBlancoVivo = false;
+		bool reyNegroVivo = false;
+
+		for (int i = 0; i < TABLERO; i++) {
+			for (int j = 0; j < TABLERO; j++) {
+				if (tablero[i][j] == 'K') reyBlancoVivo = true;
+				if (tablero[i][j] == 'k') reyNegroVivo = true;
+			}
+		}
+
+		if (!reyBlancoVivo) {
+			std::cout << "\nJAQUE MATE! Ganan las NEGRAS.\n";
+			juegoAcabado = true;
+		}
+		else if (!reyNegroVivo) {
+			std::cout << "\nJAQUE MATE! Ganan las BLANCAS.\n";
+			juegoAcabado = true;
 		}
 	}
 }

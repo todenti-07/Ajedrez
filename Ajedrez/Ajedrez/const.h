@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 
 #define TABLERO 8
@@ -18,8 +19,7 @@
 #define REINA_NEGR 'q'
 #define REY_NEGR 'k'
 
-struct Coordenadas
-{
+struct Coordenadas {
 	int x;
 	int y;
 };
