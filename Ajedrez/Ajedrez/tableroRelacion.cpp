@@ -19,8 +19,8 @@ void inicializarTablero(char tablero[TABLERO][TABLERO]) {
 		if (i == 0 || i == 7) tablero[0][i] = TORRE_NEGR;        // 't'
 		else if (i == 1 || i == 6) tablero[0][i] = CABALLO_NEGR; // 'h'
 		else if (i == 2 || i == 5) tablero[0][i] = ALFIL_NEGR;   // 'b'
-		else if (i == 3) tablero[0][i] = REINA_NEGR;               // 'q'
-		else if (i == 4) tablero[0][i] = REY_NEGR;                 // 'k'
+		else if (i == 3) tablero[0][i] = REY_NEGR;               // 'k'
+		else if (i == 4) tablero[0][i] = REINA_NEGR;                 // 'q'
 
 		// Fila 7: piezas blancas
 		if (i == 0 || i == 7) tablero[7][i] = TORRE_BLAN;        // 'T'
