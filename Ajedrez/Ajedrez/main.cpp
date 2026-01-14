@@ -1,7 +1,7 @@
 #include <iostream>
 
 #define TABLERO 8
-#define VACÕçO '*'
+#define VACIçO '*'
 
 #define PE”N_BLAN 'P'
 #define TORRE_BLAN 'T'
@@ -20,7 +20,7 @@
 void inicializarTablero(char tablero[TABLERO][TABLERO]) {
 	for (int i = 0; i < TABLERO; i++) {
 		for (int j = 0; j < TABLERO; j++) {
-			tablero[i][j] = VAC√çO;
+			tablero[i][j] = VACIO;         
 			if (i == 1) {
 				tablero[i][j] = 'p'; // Peones Negros
 			}
