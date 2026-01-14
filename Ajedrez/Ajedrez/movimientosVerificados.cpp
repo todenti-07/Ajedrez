@@ -13,6 +13,7 @@ void verificarMovimientoPeonB(char tablero[TABLERO][TABLERO], Coordenadas posIni
 	}
 	else {
 		std::cout << "Movimiento no permitido para el peon blanco. Introduce de nuevo las coordenadas finales: \n";
+		std::cout << "Movimiento no permitido para el peón blanco. Introduce de nuevo las coordenadas finales: \n";
 		std::cin >> posFinal.x;
 		std::cin >> posFinal.y;
 		verificarMovimientoPeonB(tablero, posInicial, posFinal);
@@ -29,6 +30,7 @@ void verificarMovimientoPeonN(char tablero[TABLERO][TABLERO], Coordenadas posIni
 	}
 	else {
 		std::cout << "Movimiento no permitido para el peon negro. Introduce de nuevo las coordenadas finales: \n";
+		std::cout << "Movimiento no permitido para el peón negro. Introduce de nuevo las coordenadas finales: \n";
 		std::cin >> posFinal.x;
 		std::cin >> posFinal.y;
 		verificarMovimientoPeonN(tablero, posInicial, posFinal);
